@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+}
+afterEvaluate {
+    publishing {//发布到本地
+        repositories {
+            maven {
+                url = uri("../repo")
+            }
+        }
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = "com.github.jiashuaishuai"
+                version = '1.0.0'
+                artifactId = "repository-annotation"
+                from components.java
+            }
+        }
+    }
+}
